@@ -4,9 +4,22 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// Enable Hot Reloading by destructuring the binding of React && HTML
+// When any changes occur, we want to use the renderApp() func
+const MOUNT = document.getElementById('root'); // Or document.querySelector('#root')
+const renderApp = Comp => ReactDOM.render(Comp, MOUNT);
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+// Confirm Hot Reloading is working
+if (module.hot) {
+    // When change occurs, inform Hot Loader we're accepting the change
+    module.hot.accept('./App', () => {
+        // Accept hot change request
+        // Re-require App.js & render new instance of the component
+        const NextApp = require('./App').default;
+        renderApp(<NextApp />);
+    })
+}
+
+renderApp(<App />);
+
 serviceWorker.unregister();
