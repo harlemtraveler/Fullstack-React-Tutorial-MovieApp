@@ -12,7 +12,7 @@ const renderApp = Comp => ReactDOM.render(Comp, MOUNT);
 // Confirm Hot Reloading is working
 if (module.hot) {
     // When change occurs, inform Hot Loader we're accepting the change
-    module.hot.accept('./App', () => {
+    module.hot.accept('./routes', () => {
         // Accept hot change request
         // Re-require App.js & render new instance of the component
         const NextRoutes = require('./routes').default;
