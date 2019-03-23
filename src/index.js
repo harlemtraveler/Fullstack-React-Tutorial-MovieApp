@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Routes from './routes';
 import * as serviceWorker from './serviceWorker';
 
 // Enable Hot Reloading by destructuring the binding of React && HTML
@@ -15,11 +15,11 @@ if (module.hot) {
     module.hot.accept('./App', () => {
         // Accept hot change request
         // Re-require App.js & render new instance of the component
-        const NextApp = require('./App').default;
-        renderApp(<NextApp />);
+        const NextRoutes = require('./routes').default;
+        renderApp(<Routes />);
     })
 }
 
-renderApp(<App />);
+renderApp(<Routes />);
 
 serviceWorker.unregister();
